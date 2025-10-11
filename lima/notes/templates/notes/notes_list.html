@@ -1,12 +1,11 @@
-{% extends 'layout.html'%}
+{% extends 'notes/notes_layout.html'%}
 
 {% block title %}
     Notes
 {% endblock %}
 
-{% block content %}
+{% block notes_content %}
     <section>
-        <h1>Notes</h1>
         {% for note in notes %}
             <article class='notes'>
                 <h2> 

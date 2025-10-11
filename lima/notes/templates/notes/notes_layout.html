@@ -1,0 +1,28 @@
+<!used to extend the shape of notes section of the app!>
+
+{% extends 'layout.html'%}
+
+
+{% block content %}
+    <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'notes:home' %}">
+                <span role='img' aria-label='Notes Home' title="Notes Home">📘</span>
+            </a> | 
+            <a href="{% url 'notes:list' %}">
+                <span role='img' aria-label='Notes List' title="Notes List">📙</span>
+            </a> | 
+            <a href="{% url 'notes:new-note' %}">
+                <span role='img' aria-label='New Note' title="New Note">📥</span>
+            </a>
+        {% else %}
+            <a href="{% url 'users:login' %}">
+                <span role='img' aria-label='Login' title="Login">🚪</span>
+            </a> | 
+        {% endif %}
+       
+        {% block notes_content %}
+    
+        {% endblock %}
+    </div>
+{% endblock%}

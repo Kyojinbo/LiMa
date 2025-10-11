@@ -1,10 +1,7 @@
-{% extends 'layout.html'%}
+{% extends 'notes/notes_layout.html'%}
 
-{% block title %}
-    {{note.title }}
-{% endblock %}
 
-{% block content %}
+{% block notes_content %}
     <section>
         <h1>{{note.title }}</h1>
         <p> {{note.date }} </p>

@@ -1,0 +1,14 @@
+{% extends 'notes/notes_layout.html'%}
+
+
+{% block notes_content %}
+    <section>
+        <h1>New Post</h1>
+        <form action="{% url 'notes:new-note' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button>Add New Note</button>
+        </form>
+    </section>
+
+{% endblock %}
