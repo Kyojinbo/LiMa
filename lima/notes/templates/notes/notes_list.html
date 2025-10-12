@@ -15,7 +15,14 @@
                 </h2>
                 <p> {{note.date }} </p>
                 <p> {{note.body }} </p>
+                {% for tag in note.tags.all %}
+                        <a href="{% url 'notes:tagged_notes' tag.name %}">
+                            {{tag.name}}
+                        </a>
+                    {% if not forloop.last %}, {% endif %}
+            {% endfor %}
             </article>
         {% endfor %}
     </section>
 {% endblock%}
+

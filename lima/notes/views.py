@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Note
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Note, Tag
 from django.contrib.auth.decorators import login_required
 from . import forms
 
@@ -31,3 +31,12 @@ def notes_new(request):
     else:
         form = forms.CreateNote()
     return render(request, 'notes/notes_new.html', {'form':form})
+
+@login_required(login_url='/users/login/')
+def notes_by_tag(request, tag_name):
+    tag = get_object_or_404(Tag, name=tag_name)
+    notes = Note.objects.filter(user=request.user, tags=tag)
+    return render(request, 'notes/notes_by_tag.html', {
+        'notes': notes,
+        'tag_filter': tag.name,
+    })

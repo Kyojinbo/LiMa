@@ -1,0 +1,41 @@
+{% extends 'notes/notes_layout.html'%}
+
+{% block title %}
+    Tagged Notes
+{% endblock %}
+
+{% block notes_content %}
+    <section>
+
+        {% if tag_filter %}
+        <h2>Notes tagged with: {{ tag_filter }}</h2>
+        {% endif %}
+
+    </section>
+
+    <section>
+        {% if notes %}
+            {% for note in notes %}
+                <article class='notes'>
+                    <h2> 
+                        <a href="{% url 'notes:page' slug=note.slug%}">
+                            {{note.title }}
+                        </a>
+                    </h2>
+                    <p> {{note.date }} </p>
+                    <p> {{note.body }} </p>
+
+                    {% for tag in note.tags.all %}
+                        <a href="{% url 'notes:tagged_notes' tag.name %}">
+                            {{tag.name}}
+                        </a>
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                </article>
+            {% endfor %}
+        {% else %}
+            <h1>No Notes found with this tag.</h1>   
+        {% endif %}
+    </section>
+{% endblock%}
+
