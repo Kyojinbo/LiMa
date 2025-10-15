@@ -8,7 +8,10 @@
         <p> {{note.body }} </p>
         <p>
             {% for tag in note.tags.all %}
-                {{tag.name}}{% if not forloop.last %}, {% endif %}
+                    <a href="{% url 'notes:tagged_notes' tag.name %}">
+                        {{tag.name}}
+                    </a>
+                {% if not forloop.last %}, {% endif %}
             {% endfor %}
         </p>
     </section>
